@@ -1,0 +1,487 @@
+/* Layout container */
+.homepage-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #ae202a; /* main theme */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Sidebar menu */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu-item:hover {
+  background: #8c1a21; /* darker red on hover */
+  transform: translateX(4px);
+}
+
+.menu-item .icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Login Button */
+.login-btn {
+  margin-top: auto;
+  padding: 12px 18px;
+  background: white;
+  color: #ae202a !important;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.login-btn:hover {
+  background: #ffcccc;
+  color: #8c1a21;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Hero Section */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.hero h2 span {
+  color: #ae202a;
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.primary-btn {
+  padding: 12px 26px;
+  background: #ae202a;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.primary-btn:hover {
+  background: #8c1a21;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  padding: 12px 26px;
+  border: 2px solid #ae202a;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ae202a;
+  font-weight: 600;
+  transition: all 0.3s, transform 0.2s;
+}
+
+.secondary-btn:hover {
+  background: #ffcccc;
+  color: #8c1a21;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+  background: #f1f1f1;
+  text-align: center;
+  padding: 15px;
+  color: #555;
+  font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+}
+/* Sidebar items with submenu */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu-item button:hover {
+  background: #8c1a21;
+  transform: translateX(4px);
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px; /* indent submenu */
+  margin-top: 6px;
+  gap: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.submenu a {
+  text-decoration: none;
+  color: #ffcccc;
+  font-size: 0.95rem;
+  padding: 6px 0;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.submenu a:hover {
+  color: white;
+  transform: translateX(4px);
+}
+
+/* Small animation for submenu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu-btn:hover {
+  background: #8c1a21;
+  transform: translateX(4px);
+}
+
+.submenu button {
+  background: none;
+  border: none;
+  color: #ffcccc;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.submenu button:hover {
+  color: white;
+  transform: translateX(4px);
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* take all vertical space */
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logout-btn {
+  margin-top: 580px; /* pushes logout to bottom */
+  text-decoration: none;
+  color: white;
+  padding: 10px 0;
+}
+.user-table-wrapper {
+  width: 95%;           /* slightly smaller than full width */
+  max-width: 1000px;    /* prevent it from stretching too much */
+  margin: 20px auto;    /* center horizontally with margin on top */
+  overflow-x: auto;     /* allow horizontal scroll on small screens */
+}
+
+/* Table Styling */
+.user-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  background-color: #1b1b2f; /* dark background */
+  color: #fff; /* white text */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.user-table th {
+  background: linear-gradient(90deg, #5c1b1b, #3a0000); /* dark red gradient header */
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #2e1b1b; /* dark red alternate row */
+}
+
+.user-table tr:nth-child(odd) {
+  background-color: #3a1f1f; /* slightly lighter red */
+}
+
+.user-table tr:hover {
+  background-color: #5c0000; /* highlight row on hover */
+}
+
+/* Buttons inside table */
+.user-table button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff; /* white text */
+  background-color: #d32f2f; /* bright red */
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.2s ease;
+}
+
+.user-table button:hover {
+  background-color: #f44336; /* lighter red on hover */
+}
+
+/* Add User Button */
+.add-user-btn {
+  background-color: #d32f2f; /* bright red */
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-user-btn:hover {
+  background-color: #f44336; /* lighter red on hover */
+}
+
+/* Remove default button outline */
+button:focus {
+  outline: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1e1e2f;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+}
+
+.modal-content input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.modal-content button {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* slightly darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px; /* small padding for mobile */
+}
+
+
+/* Modal content */
+.modal-content {
+  background-color: #1b1b2f; /* dark blue/red theme background */
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Modal title */
+.modal-content h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #faf4f4; /* Access Group red */
+  text-align: center;
+  border-bottom: 1px solid #8c1a21;
+  padding-bottom: 8px;
+}
+
+/* Inputs */
+.modal-content input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #2e2e42;
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #ae202a; /* red border on focus */
+}
+
+/* Buttons */
+.modal-content button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Primary action button */
+.modal-content button:first-of-type {
+  background-color: #ae202a; /* Access Group red */
+  color: #fff;
+}
+
+.modal-content button:first-of-type:hover {
+  background-color: #8c1a21;
+}
+
+/* Secondary button (Cancel) */
+.modal-content button:last-of-type {
+  background-color: #fff;
+  color: #ae202a;
+  border: 1px solid #ae202a;
+}
+
+.modal-content button:last-of-type:hover {
+  background-color: #ffcccc;
+  color: #8c1a21;
+}
