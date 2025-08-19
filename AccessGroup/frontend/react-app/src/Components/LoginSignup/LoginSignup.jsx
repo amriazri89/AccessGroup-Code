@@ -47,11 +47,18 @@ const LoginSignup = () => {
           setMessageType("success");
           setMessage("✅ Sign-up successful! You can now log in.");
           setIsLogin(true);
-          setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+          setFormData({
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
         } else {
           const errData = await response.json();
           setMessageType("error");
-          setMessage("❌ Sign-up failed: " + (errData.message || response.statusText));
+          setMessage(
+            "❌ Sign-up failed: " + (errData.message || response.statusText)
+          );
         }
       } else {
         // LOGIN
@@ -72,6 +79,9 @@ const LoginSignup = () => {
           localStorage.setItem("name", data.name);
           localStorage.setItem("userEmail", data.email);
           localStorage.setItem("userId", data.userId);
+
+          // 👇 Force "users" as default page after login
+          localStorage.setItem("defaultPage", "users");
 
           setMessageType("success");
           setMessage("✅ Login successful! Redirecting...");

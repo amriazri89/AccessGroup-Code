@@ -113,7 +113,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-image: url("../assets/office-bg.jpg");
+  background-image: url("../assets/office-bg.jpeg");
   background-size: cover; /* Fill screen without stretching */
   background-position: center right -80%; /* Shift slightly to the right */
   background-repeat: no-repeat; /* No tiling */

@@ -34,15 +34,25 @@ ChartJS.register(
   PointElement,
   LineElement
 );
+import aclogo from "/aclogo.jpg";
+import profile from "/profile.png";
 
 function HomePage() {
-  const [activePage, setActivePage] = useState("dashboard");
+  const [activePage, setActivePage] = useState("users");
   const [username, setUsername] = useState("");
   const [userList, setUserList] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedUser, setSelectedUser] = useState({ id: null, name: "", email: "" });
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [selectedUser, setSelectedUser] = useState({
+    id: null,
+    name: "",
+    email: "",
+  });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   // ✅ Helper to get Authorization header
   const getAuthHeader = () => {
@@ -127,31 +137,81 @@ function HomePage() {
   // Dummy chart data
   const barData = {
     labels: ["HR", "Finance", "IT", "Admin", "Projects"],
-    datasets: [{ label: "Tasks Completed", data: [12, 19, 7, 15, 10], backgroundColor: "rgba(54, 162, 235, 0.6)" }],
+    datasets: [
+      {
+        label: "Tasks Completed",
+        data: [12, 19, 7, 15, 10],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+      },
+    ],
   };
   const doughnutData = {
     labels: ["Pending", "In Progress", "Completed"],
-    datasets: [{ data: [8, 12, 20], backgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0"] }],
+    datasets: [
+      { data: [8, 12, 20], backgroundColor: ["#FF6384", "#36A2EB", "#4BC0C0"] },
+    ],
   };
   const lineData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-    datasets: [{ label: "Monthly Revenue ($)", data: [3000, 4500, 4000, 6000, 7500], borderColor: "#36A2EB", fill: false }],
+    datasets: [
+      {
+        label: "Monthly Revenue ($)",
+        data: [3000, 4500, 4000, 6000, 7500],
+        borderColor: "#36A2EB",
+        fill: false,
+      },
+    ],
   };
 
   return (
     <div className="homepage-container">
       <aside className="sidebar">
+        <img src={aclogo} alt="Logo" className="login-icon" />
+        <div className="profile-container">
+          <img src={profile} alt="profile" className="profile-icon" />
+        </div>
+
         <h1 className="logo">Access Group</h1>
         <nav className="menu-links">
           <div className="menu-items">
-            <button className="menu-btn" onClick={() => setActivePage("dashboard")}>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("dashboard")}
+            >
               <FaHome className="icon" /> Dashboard
             </button>
-            <button className="menu-btn" onClick={() => setActivePage("finance")}>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("finance")}
+            >
               <FaMoneyBillWave className="icon" /> Finance
             </button>
-            <button className="menu-btn" onClick={() => setActivePage("reports")}>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("accounting")}
+            >
+              <FaMoneyBillWave className="icon" /> Accounting
+            </button>
+            <button className="menu-btn" onClick={() => setActivePage("hr")}>
+              <FaChartBar className="icon" /> HR
+            </button>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("payroll")}
+            >
+              <FaChartBar className="icon" /> Payroll
+            </button>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("reports")}
+            >
               <FaChartBar className="icon" /> Reports
+            </button>
+            <button
+              className="menu-btn"
+              onClick={() => setActivePage("accessEvo")}
+            >
+              <FaChartBar className="icon" /> Access Evo
             </button>
             <button className="menu-btn" onClick={() => setActivePage("users")}>
               <FaUsers className="icon" /> MyAccessUser
@@ -167,11 +227,22 @@ function HomePage() {
         <section className="hero">
           {activePage === "dashboard" && (
             <>
-              <h2>📊 Welcome <span>{username}</span></h2>
-              <p>Here you can get an overview of HR, Finance, and Reports in one place.</p>
+              <h2>
+                📊 Welcome <span>{username}</span>
+              </h2>
+              <p>
+                Here you can get an overview of HR, Finance, and Reports in one
+                place.
+              </p>
               <div className="charts">
-                <div className="chart-card"><h3>Department Performance</h3><Bar data={barData} /></div>
-                <div className="chart-card"><h3>Task Status</h3><Doughnut data={doughnutData} /></div>
+                <div className="chart-card">
+                  <h3>Department Performance</h3>
+                  <Bar data={barData} />
+                </div>
+                <div className="chart-card">
+                  <h3>Task Status</h3>
+                  <Doughnut data={doughnutData} />
+                </div>
               </div>
             </>
           )}
@@ -185,13 +256,20 @@ function HomePage() {
 
           {activePage === "users" && (
             <div>
-              <h2>👥 My Access Users</h2>
-              <button className="add-user-btn" onClick={() => setShowAddModal(true)}>
-                <FaPlus /> Add User
-              </button>
+              <div className="table-header">
+                <h2>👥 My Access Users</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className="add-user-btn" onClick={() => setShowAddModal(true)}>
+                  <FaPlus /> Add User
+                </button>
+              </div>
               <table className="user-table">
                 <thead>
-                  <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {userList.map((user) => (
@@ -200,8 +278,12 @@ function HomePage() {
                       <td>{user.name}</td>
                       <td>{user.email}</td>
                       <td>
-                        <button onClick={() => openEditModal(user)}><FaEdit /></button>
-                        <button onClick={() => handleDeleteUser(user.id)}><FaTrash /></button>
+                        <button onClick={() => openEditModal(user)}>
+                          <FaEdit />
+                        </button>
+                        <button onClick={() => handleDeleteUser(user.id)}>
+                          <FaTrash />
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -220,9 +302,28 @@ function HomePage() {
           <div className="modal">
             <div className="modal-content">
               <h3>Add New User</h3>
-              <input placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-              <input placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-              <input type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+              <input
+                placeholder="Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
+              <input
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+              />
               <button onClick={handleAddUser}>Add</button>
               <button onClick={() => setShowAddModal(false)}>Cancel</button>
             </div>
@@ -234,9 +335,28 @@ function HomePage() {
           <div className="modal">
             <div className="modal-content">
               <h3>Edit User</h3>
-              <input placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-              <input placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-              <input type="password" placeholder="Password (leave blank to keep current)" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+              <input
+                placeholder="Name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+              />
+              <input
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
+              <input
+                type="password"
+                placeholder="Password (leave blank to keep current)"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+              />
               <button onClick={handleEditUser}>Save</button>
               <button onClick={() => setShowEditModal(false)}>Cancel</button>
             </div>
