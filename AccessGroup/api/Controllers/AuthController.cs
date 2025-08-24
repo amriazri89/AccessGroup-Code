@@ -52,6 +52,9 @@ public class AuthController : ControllerBase
         {
             message = "Login successful",
             userId = user.Id,
+            email = user.Email,
+            name = user.Name,
+            role = user.Role,
             token = token
         });
     }

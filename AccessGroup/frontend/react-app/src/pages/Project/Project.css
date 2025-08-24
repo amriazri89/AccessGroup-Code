@@ -1,0 +1,253 @@
+.project-page {
+  padding: 20px;
+}
+
+.project-page h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-page p {
+  margin-bottom: 1.5rem;
+  color: #6b7280;
+}
+.project-header{
+    color:black;
+}
+/* Table */
+.project-table {
+    color: black;
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.project-table th,
+.project-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.project-table th {
+  background-color: #fffbfb;
+  font-weight: 600;
+}
+
+/* Clickable row */
+.project-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.project-row:hover {
+  background-color: #f3f4f6;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background-color: #f59e0b;
+}
+
+.status-active {
+  background-color: #10b981;
+}
+
+.status-completed {
+  background-color: #3b82f6;
+}
+
+.status-onhold {
+  background-color: #ef4444;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* slightly darker for focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal box */
+.modal {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 1px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transform: translateY(-20px);
+  animation: slideDown 0.3s ease forwards;
+}
+
+/* Modal heading */
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Form labels & inputs */
+.modal-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.modal-form input,
+.modal-form select {
+  width: 85%;
+  padding: 8px 12px;
+  margin-top: 4px;
+  border-radius: 2px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Modal buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.x-btn {
+    float: right;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  margin-top: -55px;
+    background-color: #ef4472;
+
+}
+
+.create-btn {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  margin-bottom: 15px;
+}
+
+/* Create button */
+.create-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.create-btn:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.4);
+}
+
+/* Cancel button */
+.cancel-btn {
+  background-color: #ef4472;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button,
+.action-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+/* === Action Buttons === */
+.start-btn {
+  background-color: #10b981;
+}
+
+.start-btn:hover {
+  background-color: #059669;
+}
+
+.complete-btn {
+  background-color: #3b82f6;
+}
+
+.complete-btn:hover {
+  background-color: #2563eb;
+}
+
+.reopen-btn {
+  background-color: #facc15;
+  color: #bd1818;
+}
+
+.reopen-btn:hover {
+  background-color: #eab308;
+}
+
+.onhold-btn {
+    margin-top: 10px;
+  background-color: #f97316;
+}
+
+.onhold-btn:hover {
+  background-color: #ea580c;
+}
+
+.resume-btn {
+  background-color: #6366f1;
+}
+
+.resume-btn:hover {
+  background-color: #4f46e5;
+}

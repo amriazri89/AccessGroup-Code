@@ -1,0 +1,274 @@
+/* ===========================
+   Main Container
+=========================== */
+.dashboard-page {
+  padding: 10px 40px 40px 69px; /* left padding = sidebar width */
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* ===========================
+   Header
+=========================== */
+.header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+  color: #20477d;
+}
+
+.header p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+/* ===========================
+   Stats Bar
+=========================== */
+/* ==== Stats Bar ====: 5 cards in one row on desktop */
+.stats-container {
+    background: #fff;
+  margin-bottom: 20px;
+  height: 100px;
+  border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+}
+.no-projects{
+    color: rgb(168, 100, 100);
+    font: 0.8 em sans-serif;
+}
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* cards no longer need flex sizing */
+.stat {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* responsive: stack nicely on smaller screens */
+@media (max-width: 1024px) {
+  .stats-bar { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 5px;
+}
+
+/* ===========================
+   Employee Grid
+=========================== */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ===========================
+   Employee Card
+=========================== */
+.employee-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.employee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   Employee Header
+=========================== */
+.employee-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.employee-avatar {
+  width: 45px;
+  height: 45px;
+  background-color: #da5570;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.employee-info h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: #111827;
+}
+
+.employee-role {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-decoration: underline;
+}
+
+/* ===========================
+   Projects Section
+=========================== */
+
+.projects-section {
+  margin-top: 10px;
+}
+
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.projects-title {
+  font-weight: 500;
+
+}
+
+.project-count {
+  font-size: 0.65rem;
+  color: rgb(55, 54, 54);
+  background-color: #e5e5e7;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.projects-item:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #d2d3d5;
+
+}
+
+/* ===========================
+   Project Card
+=========================== */
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.project-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.project-details {
+  font-size: 0.75rem;
+  color: #6b7280;
+  
+}
+/* Project row/card inside an employee card */
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.project-item:hover {
+    
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  background-color: #eeeff1;
+}
+/* ===========================
+   Progress Bar
+=========================== */
+.progress-bar {
+  width: 220px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  margin-top: 4px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #2563eb;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* ===========================
+   Status Badges
+=========================== */
+.status-badge {
+
+  font-size: 0.55rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.status-active {
+    font-size: 0.55rem;
+  background-color: #166148;
+}
+
+.status-completd {
+    font-size: 0.55rem;
+  background-color: #3b82f6;
+}
+
+.status-overdue {
+  background-color: #ef4444;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.status-inactive {
+  background-color: #9ca3af; /* gray */
+}

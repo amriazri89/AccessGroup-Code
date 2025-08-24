@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; // Required for Include
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using api.Models;
 using api.Data;
-using Microsoft.AspNetCore.Authorization; // Adjust namespace as needed for ApplicationDbContext
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
-    [Authorize] 
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -19,54 +20,85 @@ namespace api.Controllers
             _context = context;
         }
 
+
+
+        // GET: api/User
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAll()
+        public async Task<ActionResult<IEnumerable<User>>> GetAll()
         {
-            return Ok(_context.Users.ToList());
+            var users = await _context.Users
+                .Include(u => u.CreatedProjects)
+                .Include(u => u.AssignedProjects)
+                .ToListAsync();
+
+            return Ok(users);
         }
 
+        // GET: api/User/5
         [HttpGet("{id}")]
-        public ActionResult<User> Get(int id)
+        public async Task<ActionResult<User>> Get(int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var user = await _context.Users
+                .Include(u => u.CreatedProjects)
+                .Include(u => u.AssignedProjects)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
             if (user == null)
-                return NotFound();
+                return NotFound(new { message = "User not found." });
+
             return Ok(user);
         }
 
+
+        // POST: api/User
         [HttpPost]
-        public ActionResult<User> Create(User user)
+        public async Task<ActionResult<User>> Create([FromBody] User user)
         {
-            Console.WriteLine($"Received user: {user.Name}, {user.Email}");
+            if (user == null)
+                return BadRequest(new { message = "Invalid user data." });
+
+            if (await _context.Users.AnyAsync(u => u.Email == user.Email))
+                return Conflict(new { message = "Email already exists." });
+
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
-
+        // PUT: api/User/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, User updatedUser)
+        public async Task<IActionResult> Update(int id, [FromBody] User updatedUser)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (updatedUser == null)
+                return BadRequest(new { message = "Invalid user data." });
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
-                return NotFound();
+                return NotFound(new { message = "User not found." });
 
             user.Name = updatedUser.Name;
             user.Email = updatedUser.Email;
-            user.Password = updatedUser.Password;
-            _context.SaveChanges();
+            //user.Password = updatedUser.Password; // Optional: hash in production
+            user.Phone = updatedUser.Phone;
+            user.Department = updatedUser.Department;
+            user.Position = updatedUser.Position;
+            user.Role = updatedUser.Role;
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
-                return NotFound();
+                return NotFound(new { message = "User not found." });
 
             _context.Users.Remove(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
