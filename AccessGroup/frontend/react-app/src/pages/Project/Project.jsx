@@ -21,7 +21,10 @@ const Project = () => {
     status: "Pending",
     dueDate: "",
     assignedUserId: "",
+    dateCreated: "",
+    createdByUserId: null,
     statusReason: "",
+    dateCreated: "",
   });
 
   // OnHold modal state (for adding statusReason)
@@ -40,6 +43,13 @@ const Project = () => {
       setProjects([]);
     }
   };
+
+  useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem("userId")); // adjust if your auth stores differently
+    if (userId) {
+      setProjectForm((prev) => ({ ...prev, createdByUserId: userId }));
+    }
+  }, []);
 
   useEffect(() => {
     fetchProjects();
@@ -74,17 +84,20 @@ const Project = () => {
         dueDate: project.dueDate ? project.dueDate.split("T")[0] : "",
         assignedUserId: project.assignedUserId || "",
         statusReason: project.statusReason || "",
+        createdByUserId: project.createdByUserId || "",
+        dateCreated: project.dateCreated  ? project.dateCreated.split("T")[0] : "",
       });
     } else {
       setEditingProject(null);
       setProjectForm({
-        id: null,
         title: "",
         remark: "",
         status: "Pending",
         dueDate: "",
         assignedUserId: "",
         statusReason: "",
+        createdByUserId: "",
+        dateCreated: "",
       });
     }
     setIsModalOpen(true);
@@ -110,22 +123,26 @@ const Project = () => {
           remark: projectForm.remark,
           status: projectForm.status,
           dueDate: projectForm.dueDate,
+          dateCreated: projectForm.dateCreated,
           assignedUserId: projectForm.assignedUserId,
           statusReason:
             projectForm.status === "Active" ? projectForm.statusReason : null, // clear if not Active
+          createdByUserId: projectForm.createdByUserId,
         });
       } else {
+        console.log("Creating project with data:", projectForm);
         await ProjectService.create(projectForm);
       }
       await fetchProjects(); // refresh list after save
       setProjectForm({
-        id: null,
         title: "",
         remark: "",
         status: "Pending",
         dueDate: "",
         assignedUserId: "",
         statusReason: "",
+        createdByUserId: "",
+        dateCreated: "",
       });
       setEditingProject(null);
       setIsModalOpen(false);
@@ -229,7 +246,7 @@ const Project = () => {
               <th>Remark</th>
               <th style={{ width: "100px" }}>Status</th>
               <th>Assigned To</th>
-              <th>Date Created</th>
+              <th>Start Date </th>
               <th>Due Date</th>
               <th>Day Left</th>
               <th>Project Task</th>
@@ -419,6 +436,13 @@ const Project = () => {
                     required
                   />
                 </label>
+                <label>
+                  <input
+                    type="hidden"
+                    name="createdByUserId"
+                    value={ JSON.parse(localStorage.getItem("userId"))}
+                  />
+                </label>
                 {projectForm.status === "Active" && (
                   <label>
                     Informed Progress (if any):
@@ -465,12 +489,23 @@ const Project = () => {
                   </select>
                 </label>
                 <label>
-                  Due Date:
+                  Start Project Date:
+                  <input
+                    type="date"
+                    name="dateCreated"
+                    value={projectForm.dateCreated}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+                <label>
+                 Project Due Date:
                   <input
                     type="date"
                     name="dueDate"
                     value={projectForm.dueDate}
                     onChange={handleChange}
+                    required
                   />
                 </label>
 
@@ -507,6 +542,8 @@ const Project = () => {
                   onChange={(e) => setOnHoldReasonSelect(e.target.value)}
                 >
                   <option value="">Select reason</option>
+                  
+<option value="Blocked By Compliance">Blocked By Compliance</option>
                   <option value="Client Delay">Client Delay</option>
                   <option value="Resource Unavailable">
                     Resource Unavailable

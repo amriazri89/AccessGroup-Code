@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/MainLayout/MainLayout";
 import HomePage from "./pages/HomePage/HomePage";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard.bk";
 import Project from "./pages/Project/Project";
 import ProjectTask from "./pages/ProjectTask/ProjectTask";
 import "./styles/style.css";

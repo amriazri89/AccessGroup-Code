@@ -183,6 +183,7 @@ namespace api.Controllers
             existingProject.Remark = updatedProject.Remark;
             existingProject.Status = updatedProject.Status;
             existingProject.DueDate = updatedProject.DueDate;
+            existingProject.DateCreated = updatedProject.DateCreated;
             existingProject.AssignedUserId = updatedProject.AssignedUserId; // safe now
             existingProject.StatusReason = updatedProject.StatusReason;
             existingProject.CompleteDate = updatedProject.Status == "Completed" ? DateTime.UtcNow : null;

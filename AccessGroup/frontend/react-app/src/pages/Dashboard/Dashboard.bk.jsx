@@ -6,26 +6,6 @@ import ProjectService from "../../services/ProjectService";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-const calculateProgress = (dateCreated, dueDate) => {
-  if (!dateCreated || !dueDate) return 0;
-
-  const start = new Date(dateCreated);
-  const end = new Date(dueDate);
-  const today = new Date();
-
-  if (end <= start) return 100;
-
-  const totalDays = (end - start) / (1000 * 60 * 60 * 24);
-  const passedDays = (today - start) / (1000 * 60 * 60 * 24);
-
-  if (today < start) return 0;
-  if (today >= end) return 100;
-
-  let percent = (passedDays / totalDays) * 100;
-  percent = Math.max(1, Math.min(100, percent));
-  return Math.round(percent);
-};
-
   useEffect(() => {
     document.title = "Employee Projects Dashboard "; // set tab name
   }, []);
@@ -210,7 +190,7 @@ const calculateProgress = (dateCreated, dueDate) => {
                                     {Math.ceil(
                                       (new Date(project.dueDate) - new Date()) /
                                         (1000 * 60 * 60 * 24)
-                                    )}{" "}	
+                                    )}{" "}
                                     day(s) left
                                   </>
                                 ) : (
@@ -221,15 +201,16 @@ const calculateProgress = (dateCreated, dueDate) => {
                               {/* Progress bar */}
                               {/* Progress bar */}
                               <div className="progress-bar">
-
+                                
                                 <div
                                   className="progress-fill"
                                   style={{
-  width: project.completeDate
-    ? "100%" // full if completed
-    : `${calculateProgress(project.dateCreated, project.dueDate)}%`, // calculated
-}}
-
+                                    width: project.completeDate
+                                      ? "100%" // full if completed
+                                      : project.completionRate
+                                      ? `${project.completionRate}%`
+                                      : "0%", // fallback
+                                  }}
                                 ></div>
                               </div>
                             </div>

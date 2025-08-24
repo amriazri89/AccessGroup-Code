@@ -29,7 +29,9 @@ namespace api.Models
         public ICollection<ProjectTask> Tasks { get; set; } = new List<ProjectTask>();
 
         // 🔹 Created By User (FK to ApplicationUser)
+        [JsonIgnore]
         public int? CreatedByUserId { get; set; }
+        [JsonIgnore]
         public User? CreatedByUser { get; set; }
 
         // 🔹 Assigned User
@@ -37,7 +39,7 @@ namespace api.Models
         public User? AssignedUser { get; set; }
 
         // Computed property: completion rate based on tasks
-        public double CompletionRate
+        public double ProgressRate
         {
             get
             {
@@ -65,7 +67,7 @@ namespace api.Models
             }
         }
 
-        public double tasksCompletionRate
+        public double TasksCompletionRate
         {
             get
             {

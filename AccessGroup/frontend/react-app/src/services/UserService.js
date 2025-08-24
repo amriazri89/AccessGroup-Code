@@ -45,7 +45,7 @@ export default class UserService {
     phone,
     department,
     position,
-    role,
+    role = "User",
   }) {
     try {
       const res = await api.post("/user", {

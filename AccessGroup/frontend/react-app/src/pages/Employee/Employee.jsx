@@ -233,7 +233,7 @@ const Employee = () => {
                     value={employeeForm.role}
                     onChange={handleChange}
                     required
-                  >
+                  ><option value="User">User</option>
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                   </select>
